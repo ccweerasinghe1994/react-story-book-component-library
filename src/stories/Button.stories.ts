@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Button from '../Components/Button';
+import Button from '../Components/Button/Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -15,7 +15,11 @@ const meta = {
 	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 	argTypes: {
 		children: { control: 'text' },
-		rounded: { control: 'boolean' },
+		rounded: {
+			control: 'boolean',
+			description: 'this can be used to make the button rounded',
+			defaultValue: false
+		},
 		type: {
 			control: 'select',
 			options: [
@@ -34,6 +38,11 @@ const meta = {
 		size: {
 			control: 'inline-radio',
 			options: ['small', 'medium', 'large']
+		},
+		className: {
+			control: 'text',
+			description: 'this can be used to override button state',
+			defaultValue: ''
 		}
 		// backgroundColor: { control: 'color' }
 	}
