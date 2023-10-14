@@ -43,7 +43,8 @@ const meta = {
 			control: 'text',
 			description: 'this can be used to override button state',
 			defaultValue: ''
-		}
+		},
+		onClick: { action: 'clicked', defaultValue: () => {} }
 		// backgroundColor: { control: 'color' }
 	}
 } satisfies Meta<typeof Button>;
@@ -58,7 +59,10 @@ export const Normal: Story = {
 		type: 'none',
 		children: 'Button Text',
 		rounded: false,
-		size: 'medium'
+		size: 'medium',
+		onClick() {
+			console.log('clicked');
+		}
 	}
 };
 
