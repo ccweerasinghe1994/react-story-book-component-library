@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Table, { TData } from '../Components/Table/Table';
+import Table from '../Components/SortableTable/SortableTable.tsx';
 import { configArray, sampleTableData } from '../App';
 
 const meta = {

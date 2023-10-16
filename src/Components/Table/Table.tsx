@@ -1,19 +1,24 @@
-import { FC, ReactNode } from 'react';
-import { TTableDataItem } from '../../App';
+import {FC, Fragment, ReactNode} from 'react';
 
 export interface TData {
 	key: string;
-	[key: string]: string | number | boolean | undefined | null;
+	[key: string]: any;
 }
 
 export type TTableConfig = {
 	label: string;
 	render?: (item: TData) => ReactNode;
+	header?: (label: string) => ReactNode;
+	sortValue?:(item: TData) => string|number;
 };
-type TTableProps = {
+export type TTableProps = {
 	items: Array<TData>;
 	config: Array<TTableConfig>;
 };
+
+export type Test<T> =Record<string, T>
+
+
 
 const Table: FC<TTableProps> = ({ items, config }) => {
 	const renderRow = (item: TData) => {
@@ -30,7 +35,20 @@ const Table: FC<TTableProps> = ({ items, config }) => {
 		</tr>
 	));
 
-	const renderHeaders = config.map(({ label }) => <th key={label}>{label}</th>);
+	const renderHeaders = config.map(({ label,header }) => {
+
+		if (header){
+			return (
+				<Fragment key={label}>
+					{header(label)}
+				</Fragment>
+			)
+		}
+
+		return (
+			<th key={label}>{label}</th>
+		)
+	});
 
 	return (
 		<table className="table-auto border-spacing-2">
